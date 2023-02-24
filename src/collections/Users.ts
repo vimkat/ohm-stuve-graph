@@ -106,6 +106,7 @@ const Users: CollectionConfig = {
 									defaultValue: () => new Date().toISOString(),
 									admin: {
 										date: { pickerAppearance: "dayOnly" },
+										width: "50%",
 									},
 								},
 								{
@@ -114,6 +115,9 @@ const Users: CollectionConfig = {
 									type: "date",
 									admin: {
 										date: { pickerAppearance: "dayOnly" },
+										width: "50%",
+										description:
+											"Austrittsdatum aus der StuVe (regelt Kürzel-Verfügbarkeit)",
 									},
 								},
 							],
