@@ -2,21 +2,33 @@ import { buildConfig } from "payload/config";
 import path from "path";
 // import Examples from './collections/Examples';
 import Users from "./collections/Users";
+import Committees from "./collections/Committees";
+import { LogoIcon, LogoFull } from "./components/logo";
 
 export default buildConfig({
-	serverURL: "http://localhost:3000",
+	serverURL: process.env.SERVER_URL || "http://localhost:3000",
 	admin: {
 		user: Users.slug,
+		meta: {
+			titleSuffix: "OHM StuVe Graph",
+			favicon: "/assets/ohm-logo.svg",
+		},
+		components: {
+			graphics: {
+				Icon: LogoIcon,
+				Logo: LogoFull,
+			},
+		},
 	},
-	collections: [
-		Users,
-		// Add Collections here
-		// Examples,
-	],
+	i18n: {
+		lng: "de",
+	},
+	collections: [Users, Committees],
 	typescript: {
 		outputFile: path.resolve(__dirname, "payload-types.ts"),
 	},
 	graphQL: {
 		schemaOutputFile: path.resolve(__dirname, "generated-schema.graphql"),
 	},
+	telemetry: false,
 });

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) by Marsupilami -->
+<svg width="50" height="50" version="1.1" viewBox="-.79428 -.79428 26.277 26.339" xmlns="http://www.w3.org/2000/svg">
+	<style>
+		path {
+			fill: #333333;
+		}
+		@media (prefers-color-scheme: dark) {
+			path {
+				fill: #EEEEEE;
+			}
+		}
+	</style>
+	<path d="m-1.0164-0.78918h26.339v13.841l-4.89 5.5363h4.89v6.9562l-12.031-0.01v-20.879h-2.2662v20.879h-12.036v-6.9475h4.8888l-4.8888-5.5401v-13.841z"/>
+</svg>
+<!-- version: 20171223, original size: 188.28584 26.476, border: 3% -->
