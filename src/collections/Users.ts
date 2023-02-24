@@ -4,6 +4,10 @@ import { text } from "payload/dist/fields/validations";
 const Users: CollectionConfig = {
 	slug: "users",
 	auth: true,
+	access: {
+		// FIXME: Only superadmins can log in for now
+		admin: ({ req: { user } }) => user.role === "superadmin",
+	},
 	admin: {
 		useAsTitle: "name",
 	},
@@ -137,6 +141,21 @@ const Users: CollectionConfig = {
 											val
 									  ) || "Telefonnummer ist falsch formatiert"
 									: text(val, args),
+						},
+						{
+							label: "System",
+							fields: [
+								{
+									name: "role",
+									label: "Rolle",
+									type: "select",
+									required: true,
+									options: [
+										{ value: "superadmin", label: "Super-Admin" },
+										{ value: "member", label: "Mitglied" },
+									],
+								},
+							],
 						},
 					],
 				},
