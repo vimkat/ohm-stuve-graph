@@ -41,7 +41,7 @@ const Committees: CollectionConfig = {
 			],
 		},
 		{
-			name: "part_of",
+			name: "reports_to",
 			label: "Übergeordnetes Gremium",
 			type: "relationship",
 			relationTo: "committees",
