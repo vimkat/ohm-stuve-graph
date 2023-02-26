@@ -1,5 +1,6 @@
 import { CollectionConfig } from "payload/types";
 import { text } from "payload/dist/fields/validations";
+import { telephone } from "src/fields/telephone";
 
 const Users: CollectionConfig = {
 	slug: "users",
@@ -130,19 +131,7 @@ const Users: CollectionConfig = {
 				},
 				{
 					label: "Kontakt",
-					fields: [
-						{
-							name: "telephone",
-							label: "Telefon",
-							type: "text",
-							validate: (val, args) =>
-								val !== ""
-									? /\+(9[976]\d|8[987530]\d|6[987]\d|5[90]\d|42\d|3[875]\d|2[98654321]\d|9[8543210]|8[6421]|6[6543210]|5[87654321]|4[987654310]|3[9643210]|2[70]|7|1)\d{1,14}$/.test(
-											val
-									  ) || "Telefonnummer ist falsch formatiert"
-									: text(val, args),
-						},
-					],
+					fields: [telephone],
 				},
 				{
 					label: "System",
