@@ -3,8 +3,8 @@ import { CollectionConfig } from "payload/types";
 const Committees: CollectionConfig = {
 	slug: "committees",
 	labels: {
-		singular: "Gremium",
-		plural: "Gremien",
+		singular: { en: "Committee", de: "Gremium" },
+		plural: { en: "Committees", de: "Gremien" },
 	},
 	admin: {
 		useAsTitle: "name",
@@ -30,7 +30,7 @@ const Committees: CollectionConfig = {
 				},
 				{
 					name: "abbreviation",
-					label: "Abkürzung",
+					label: { en: "Abbreviation", de: "Abkürzung" },
 					type: "text",
 					required: true,
 					unique: true,
@@ -42,7 +42,7 @@ const Committees: CollectionConfig = {
 		},
 		{
 			name: "reports_to",
-			label: "Übergeordnetes Gremium",
+			label: { en: "Reports To", de: "Übergeordnetes Gremium" },
 			type: "relationship",
 			relationTo: "committees",
 			filterOptions: ({ relationTo, id }) => {
@@ -52,7 +52,7 @@ const Committees: CollectionConfig = {
 		},
 		{
 			name: "type",
-			label: "Gremien-Typ",
+			label: { en: "Committee Type", de: "Gremien-Typ" },
 			type: "select",
 			options: [
 				{ value: "AS", label: "Ausschuss" }, // mostly from StuPa
@@ -65,7 +65,7 @@ const Committees: CollectionConfig = {
 		},
 		{
 			name: "members",
-			label: "Mitglieder",
+			label: { en: "Members", de: "Mitglieder" },
 			type: "relationship",
 			relationTo: "users",
 			hasMany: true,

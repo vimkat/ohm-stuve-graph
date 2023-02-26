@@ -4,6 +4,10 @@ import { telephone } from "src/fields/telephone";
 
 const Users: CollectionConfig = {
 	slug: "users",
+	labels: {
+		singular: "User",
+		plural: "Users",
+	},
 	auth: true,
 	access: {
 		// FIXME: Only superadmins can log in for now
@@ -35,7 +39,7 @@ const Users: CollectionConfig = {
 								},
 								{
 									name: "human_id",
-									label: "Kürzel",
+									label: { en: "Human ID", de: "Kürzel" },
 									type: "text",
 									required: true,
 									validate: async (val, args) => {
@@ -70,7 +74,7 @@ const Users: CollectionConfig = {
 						},
 						{
 							name: "faculty",
-							label: "Fakultät",
+							label: { en: "Faculty", de: "Fakultät" },
 							type: "select",
 							options: [
 								{ value: "AC", label: "AC - Angewandte Chemie" },
@@ -105,7 +109,7 @@ const Users: CollectionConfig = {
 							fields: [
 								{
 									name: "active_since",
-									label: "Aktiv Seit",
+									label: { en: "Active Since", de: "Aktiv Seit" },
 									type: "date",
 									required: true,
 									defaultValue: () => new Date().toISOString(),
@@ -130,7 +134,7 @@ const Users: CollectionConfig = {
 					],
 				},
 				{
-					label: "Kontakt",
+					label: { en: "Contact", de: "Kontakt" },
 					fields: [telephone],
 				},
 				{
@@ -138,12 +142,12 @@ const Users: CollectionConfig = {
 					fields: [
 						{
 							name: "role",
-							label: "Rolle",
+							label: { en: "Role", de: "Rolle" },
 							type: "select",
 							required: true,
 							options: [
 								{ value: "superadmin", label: "Super-Admin" },
-								{ value: "member", label: "Mitglied" },
+								{ value: "member", label: { en: "Member", de: "Mitglied" } },
 							],
 						},
 					],

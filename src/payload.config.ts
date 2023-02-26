@@ -1,8 +1,11 @@
 import { buildConfig } from "payload/config";
 import path from "path";
-// import Examples from './collections/Examples';
+
+import { resources } from "src/i18n";
+
 import Users from "./collections/Users";
 import Committees from "./collections/Committees";
+
 import { LogoIcon, LogoFull } from "./components/logo";
 
 export default buildConfig({
@@ -26,7 +29,9 @@ export default buildConfig({
 		},
 	},
 	i18n: {
-		lng: "de",
+		fallbackLng: "en",
+		supportedLngs: ["en", "de"],
+		resources: resources,
 	},
 	collections: [Users, Committees],
 	typescript: {
