@@ -1,4 +1,7 @@
 import { CollectionConfig } from "payload/types";
+import MemberHeader from "src/components/member-header";
+import { memberPosition } from "src/fields/member-position";
+import Users from "./Users";
 
 const Committees: CollectionConfig = {
 	slug: "committees",
@@ -57,18 +60,38 @@ const Committees: CollectionConfig = {
 			options: [
 				{ value: "AS", label: "Ausschuss" }, // mostly from StuPa
 				{ value: "AK", label: "Arbeitskreis" }, // mostly from AStA
-				{ value: "FR", label: "Fakultätsrat" },
-				{ value: "FAG", label: "Fakultäts-AG" },
+				{ value: "FakRat", label: "Fakultätsrat" },
+				{ value: "FakAG", label: "Fakultäts-AG" },
 				{ value: "FS", label: "Fachschaft" },
 				{ value: "AG", label: "Arbeitsgruppe" }, // mostly from FS
 			],
+			admin: {
+				position: "sidebar",
+			},
 		},
 		{
 			name: "members",
 			label: { en: "Members", de: "Mitglieder" },
-			type: "relationship",
-			relationTo: "users",
-			hasMany: true,
+			labels: {
+				singular: { en: "Member", de: "Mitglied" },
+				plural: { en: "Members", de: "Mitglieder" },
+			},
+			type: "array",
+			fields: [
+				{
+					name: "user",
+					type: "relationship",
+					relationTo: Users.slug,
+					required: true,
+				},
+				memberPosition,
+			],
+			admin: {
+				initCollapsed: true,
+				components: {
+					RowLabel: MemberHeader,
+				},
+			},
 		},
 	],
 };
