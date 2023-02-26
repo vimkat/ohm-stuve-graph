@@ -142,19 +142,19 @@ const Users: CollectionConfig = {
 									  ) || "Telefonnummer ist falsch formatiert"
 									: text(val, args),
 						},
+					],
+				},
+				{
+					label: "System",
+					fields: [
 						{
-							label: "System",
-							fields: [
-								{
-									name: "role",
-									label: "Rolle",
-									type: "select",
-									required: true,
-									options: [
-										{ value: "superadmin", label: "Super-Admin" },
-										{ value: "member", label: "Mitglied" },
-									],
-								},
+							name: "role",
+							label: "Rolle",
+							type: "select",
+							required: true,
+							options: [
+								{ value: "superadmin", label: "Super-Admin" },
+								{ value: "member", label: "Mitglied" },
 							],
 						},
 					],
