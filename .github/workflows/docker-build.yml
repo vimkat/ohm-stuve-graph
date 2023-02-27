@@ -54,6 +54,7 @@ jobs:
     concurrency: production
     env:
       COMPOSE_PROJECT_NAME: ohm-stuve-graph
+      PAYLOAD_HOST: ${{ vars.PAYLOAD_HOST }}
     steps:
       - name: Check out the repo
         uses: actions/checkout@v3
@@ -61,7 +62,7 @@ jobs:
       - name: Deploy to Docker Host
         uses: wshihadeh/docker-deployment-action@v2
         with:
-          remote_docker_host: ${{ env.DOCKER_USER }}$${{ env.DOCKER_HOST }}
+          remote_docker_host: ${{ vars.DOCKER_USER }}$${{ vars.DOCKER_HOST }}
           ssh_private_key: ${{ secrets.DOCKER_SSH_PRIVATE_KEY }}
           ssh_public_key: ${{ secrets.DOCKER_SSH_PUBLIC_KEY }}
           deployment_mode: docker-compose
