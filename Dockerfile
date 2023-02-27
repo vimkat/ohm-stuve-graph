@@ -30,7 +30,7 @@ ENV PAYLOAD_CONFIG_PATH=dist/payload.config.js
 ENV NODE_ENV=production
 WORKDIR /home/node/app
 
-COPY --from=packager /home/node/app/node_modules ./node_modules
+COPY --from=builder-prod /home/node/app/node_modules ./node_modules
 COPY --from=builder /home/node/app/dist ./dist
 COPY --from=builder /home/node/app/build ./build
 
