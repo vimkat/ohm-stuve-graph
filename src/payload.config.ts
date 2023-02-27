@@ -8,8 +8,15 @@ import Committees from "./collections/Committees";
 
 import { LogoIcon, LogoFull } from "./components/logo";
 
+// Set the server URL based on where this file gets evaluated
+const serverURL =
+	"document" in globalThis
+		? document?.location?.origin // browser context
+		: process.env.PAYLOAD_URL || // nodejs context
+		  `http://localhost:${process.env.PORT || 3000}`; // development (nodejs) context
+
 export default buildConfig({
-	serverURL: process.env.SERVER_URL || "http://localhost:3000",
+	serverURL: serverURL,
 	admin: {
 		user: Users.slug,
 		meta: {
