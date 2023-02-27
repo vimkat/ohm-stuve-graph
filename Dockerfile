@@ -9,7 +9,9 @@ WORKDIR /home/node/app
 COPY package*.json yarn.lock ./
 RUN yarn install
 
-COPY . .
+COPY tsconfig.json tsconfig.json
+COPY assets assets
+COPY src src
 RUN yarn build
 
 ################################################################################
