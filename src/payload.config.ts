@@ -1,7 +1,7 @@
 import { buildConfig } from "payload/config";
 import path from "path";
 
-import { resources } from "src/i18n";
+import { resources } from "./i18n";
 
 import Users from "./collections/Users";
 import Committees from "./collections/Committees";
@@ -21,11 +21,6 @@ export default buildConfig({
 				Icon: LogoIcon,
 				Logo: LogoFull,
 			},
-		},
-		// enable absolute imports in webpack
-		webpack: (config) => {
-			config.resolve.alias["src"] = path.resolve(__dirname);
-			return config;
 		},
 	},
 	i18n: {

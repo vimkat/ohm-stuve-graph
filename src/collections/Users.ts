@@ -1,6 +1,6 @@
 import { CollectionConfig } from "payload/types";
 import { text } from "payload/dist/fields/validations";
-import { telephone } from "src/fields/telephone";
+import { telephone } from "../fields/telephone";
 
 const Users: CollectionConfig = {
 	slug: "users",

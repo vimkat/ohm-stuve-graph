@@ -30,7 +30,6 @@
 		"nodemon": "^2.0.6",
 		"prettier": "^2.8.4",
 		"ts-node": "^9.1.1",
-		"tsconfig-paths": "^3.14.2",
 		"typescript": "^4.8.4"
 	},
 	"lint-staged": {

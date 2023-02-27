@@ -1,6 +1,6 @@
 import { CollectionConfig } from "payload/types";
-import MemberHeader from "src/components/member-header";
-import { memberPosition } from "src/fields/member-position";
+import MemberHeader from "../components/member-header";
+import { memberPosition } from "../fields/member-position";
 import Users from "./Users";
 
 const Committees: CollectionConfig = {

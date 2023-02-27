@@ -1,8 +1,9 @@
-import { useAuth, useConfig, useLocale } from "payload/components/utilities";
 import { useState, useEffect } from "react";
-import Users from "src/collections/Users";
-import { lookupMemberPosition } from "src/fields/member-position";
 import { useTranslation } from "react-i18next";
+import { useAuth, useConfig, useLocale } from "payload/components/utilities";
+
+import Users from "../collections/Users";
+import { lookupMemberPosition } from "../fields/member-position";
 
 const MemberHeader = ({ data }) => {
 	const { user: userID, position } = data;
