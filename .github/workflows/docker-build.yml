@@ -1,4 +1,4 @@
-name: Build and Publish Docker Image
+name: Build, Publish and Deploy
 
 on:
   push:
@@ -47,3 +47,19 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    concurrency: production
+    env:
+      COMPOSE_PROJECT_NAME: ohm-stuve-graph
+    steps:
+      - name: Deploy to Docker Host
+        uses: wshihadeh/docker-deployment-action@v2
+        with:
+          remote_docker_host: ${{ env.DOCKER_USER }}$${{ env.DOCKER_HOST }}
+          ssh_private_key: ${{ secrets.DOCKER_SSH_PRIVATE_KEY }}
+          ssh_public_key: ${{ secrets.DOCKER_SSH_PUBLIC_KEY }}
+          deployment_mode: docker-compose
+          stack_file_name: docker-compose-prod.yml
+          pull_images_first: true

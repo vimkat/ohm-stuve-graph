@@ -1,0 +1,33 @@
+version: "3"
+
+services:
+  payload:
+    image: ${REGISTRY}/${IMAGE_NAME}:main # use latest version
+    depends_on:
+      - mongo
+    volumes:
+      # set PAYLOAD_SECRET
+      - /opt/docker/secrets/ohm-stuve-graph/environment:/home/node/app/.env:ro
+    environment:
+      MONGODB_URI: mongodb://mongo:27017/ohm-stuve-graph
+      PAYLOAD_URL: https://${PAYLOAD_HOST}
+
+      VIRTUAL_HOST: ${PAYLOAD_HOST}
+      LETSENCRYPT_HOST: ${PAYLOAD_HOST}
+    networks:
+      - internal
+      - webserver
+
+  mongo:
+    image: docker.io/mongo:latest
+    volumes:
+      - data:/data/db
+    networks:
+      - internal
+
+volumes:
+  data: {}
+
+networks:
+  internal: { internal: true }
+  webserver: { external: true }
