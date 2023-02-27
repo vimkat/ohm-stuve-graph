@@ -64,3 +64,4 @@ jobs:
           deployment_mode: docker-compose
           stack_file_name: docker-compose-prod.yml
           pull_images_first: true
+          args: up -d
