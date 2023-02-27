@@ -1,5 +1,8 @@
 FROM node:18.8-alpine as base
 
+################################################################################
+
+# Build admin panel and server
 FROM base as builder
 
 WORKDIR /home/node/app
@@ -9,15 +12,25 @@ RUN yarn install
 COPY . .
 RUN yarn build
 
-FROM base as runtime
+################################################################################
+
+# Install production
+FROM builder as builder-prod
 
 ENV NODE_ENV=production
-ENV PAYLOAD_CONFIG_PATH=dist/payload.config.js
-
-WORKDIR /home/node/app
-COPY package*.json yarn.lock ./
-
+RUN rm -rf ./node_modules
 RUN yarn install --production
+
+################################################################################
+
+# Runtime for packaging
+FROM base as runtime
+
+ENV PAYLOAD_CONFIG_PATH=dist/payload.config.js
+ENV NODE_ENV=production
+WORKDIR /home/node/app
+
+COPY --from=packager /home/node/app/node_modules ./node_modules
 COPY --from=builder /home/node/app/dist ./dist
 COPY --from=builder /home/node/app/build ./build
 
