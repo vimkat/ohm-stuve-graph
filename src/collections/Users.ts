@@ -1,6 +1,7 @@
 import { CollectionConfig } from "payload/types";
 import { text } from "payload/dist/fields/validations";
 import { telephone } from "../fields/telephone";
+import { DATE_FORMAT } from "../app.config";
 
 const Users: CollectionConfig = {
 	slug: "users",
@@ -114,16 +115,22 @@ const Users: CollectionConfig = {
 									required: true,
 									defaultValue: () => new Date().toISOString(),
 									admin: {
-										date: { pickerAppearance: "dayOnly" },
+										date: {
+											pickerAppearance: "dayOnly",
+											displayFormat: DATE_FORMAT,
+										},
 										width: "50%",
 									},
 								},
 								{
 									name: "active_until",
-									label: "Aktiv Bis",
+									label: { en: "Active Until", de: "Aktiv Bis" },
 									type: "date",
 									admin: {
-										date: { pickerAppearance: "dayOnly" },
+										date: {
+											pickerAppearance: "dayOnly",
+											displayFormat: DATE_FORMAT,
+										},
 										width: "50%",
 										description:
 											"Austrittsdatum aus der StuVe (regelt Kürzel-Verfügbarkeit)",

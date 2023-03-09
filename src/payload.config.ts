@@ -2,6 +2,7 @@ import { buildConfig } from "payload/config";
 import path from "path";
 
 import { resources } from "./i18n";
+import { DATE_FORMAT } from "./app.config";
 
 import Users from "./collections/Users";
 import Committees from "./collections/Committees";
@@ -29,6 +30,7 @@ export default buildConfig({
 				Logo: LogoFull,
 			},
 		},
+		dateFormat: DATE_FORMAT,
 	},
 	i18n: {
 		fallbackLng: "en",
