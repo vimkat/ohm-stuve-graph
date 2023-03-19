@@ -93,6 +93,51 @@ const Committees: CollectionConfig = {
 				},
 			},
 		},
+
+		// Virtual field for TeX macros
+		{
+			name: "tex_macros",
+			label: "TeX Macros",
+			type: "code",
+			hooks: {
+				beforeChange: [
+					({ siblingData }) => {
+						siblingData.tex_macros = undefined;
+					},
+				],
+				afterRead: [
+					({ data, findMany, req }) =>
+						!findMany
+							? req.payload
+									.find({
+										collection: Users.slug,
+										pagination: false,
+										where: {
+											id: {
+												in: data.members.map((member) => member.user).join(","),
+											},
+										},
+									})
+									.then((result) =>
+										result.docs
+											.map((user) => `\\def\\${user.human_id}{${user.name}}`)
+											.join("\n")
+									)
+							: "only available when fetching a single document",
+				],
+			},
+			access: {
+				create: () => false,
+				update: () => false,
+			},
+			admin: {
+				readOnly: true,
+				description: {
+					en: "Copy this if you want to use human IDs in TeX",
+					de: "Zur Verwendung von Kürzeln in TeX können diese hier kopiert werden",
+				},
+			},
+		},
 	],
 };
 
