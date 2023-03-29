@@ -3,6 +3,7 @@ version: "3"
 services:
   payload:
     image: ${REGISTRY}/${IMAGE_NAME}:main # use latest version
+    restart: unless-stopped
     depends_on:
       - mongo
     volumes:
@@ -20,6 +21,7 @@ services:
 
   mongo:
     image: docker.io/mongo:latest
+    restart: unless-stopped
     volumes:
       - data:/data/db
     networks:
