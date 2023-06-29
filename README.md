@@ -1,5 +1,7 @@
 # OHM StuVe Graph
 
+[![Build, Publish and Deploy](https://github.com/vimkat/ohm-stuve-graph/actions/workflows/docker-build.yml/badge.svg)](https://github.com/vimkat/ohm-stuve-graph/actions/workflows/docker-build.yml)
+
 This project was created using create-payload-app using the blank template.
 
 ## How to Use
