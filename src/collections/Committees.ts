@@ -16,6 +16,9 @@ const Committees: CollectionConfig = {
 	access: {
 		read: () => true,
 	},
+	versions: {
+		drafts: true,
+	},
 	fields: [
 		// Email added by default
 		// Add more fields as needed
