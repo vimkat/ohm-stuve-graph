@@ -20,8 +20,6 @@ const Committees: CollectionConfig = {
 		drafts: true,
 	},
 	fields: [
-		// Email added by default
-		// Add more fields as needed
 		{
 			type: "row",
 			fields: [
@@ -71,6 +69,15 @@ const Committees: CollectionConfig = {
 			admin: {
 				position: "sidebar",
 			},
+		},
+		{
+			name: "term",
+			label: { en: "Term", de: "Legislatur" },
+			type: "select",
+			options: [
+				{ value: "16", label: "XVI - Legislatur 2022/2023" },
+				{ value: "17", label: "XVI - Legislatur 2023/2024" },
+			],
 		},
 		{
 			name: "members",
@@ -124,7 +131,7 @@ const Committees: CollectionConfig = {
 									.then((result) =>
 										result.docs
 											.map((user) => `\\def\\${user.human_id}{${user.name}}`)
-											.join("\n")
+											.join("\n"),
 									)
 							: "only available when fetching a single document",
 				],
