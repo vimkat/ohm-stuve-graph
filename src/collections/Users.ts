@@ -161,7 +161,7 @@ const Users: CollectionConfig = {
 									type: "relationship",
 									relationTo: "committees",
 									filterOptions: ({ siblingData, id }) => ({
-										term: { equals: siblingData.term },
+										term: { equals: (siblingData as any)?.term! },
 										"members.user": { contains: id },
 									}),
 									required: true,
