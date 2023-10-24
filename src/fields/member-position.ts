@@ -35,6 +35,13 @@ const options = [
 		value: "member",
 		label: { en: "Member", de: "Mitglied" },
 	},
+	{
+		value: "deputy",
+		label: {
+			en: "Deputy",
+			de: "Stellvertretende",
+		},
+	},
 ];
 
 export const lookupMemberPosition = (id: string) =>
