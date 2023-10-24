@@ -1,7 +1,7 @@
 import { CollectionConfig } from "payload/types";
 import MemberHeader from "../components/member-header";
 import { memberPosition } from "../fields/member-position";
-import Users from "./Users";
+import { term } from "../fields/term";
 
 const Committees: CollectionConfig = {
 	slug: "committees",
@@ -70,15 +70,7 @@ const Committees: CollectionConfig = {
 				position: "sidebar",
 			},
 		},
-		{
-			name: "term",
-			label: { en: "Term", de: "Legislatur" },
-			type: "select",
-			options: [
-				{ value: "16", label: "XVI - Legislatur 2022/2023" },
-				{ value: "17", label: "XVI - Legislatur 2023/2024" },
-			],
-		},
+		term(),
 		{
 			name: "members",
 			label: { en: "Members", de: "Mitglieder" },
@@ -91,7 +83,7 @@ const Committees: CollectionConfig = {
 				{
 					name: "user",
 					type: "relationship",
-					relationTo: Users.slug,
+					relationTo: "users",
 					required: true,
 				},
 				memberPosition,
@@ -120,7 +112,7 @@ const Committees: CollectionConfig = {
 						!findMany
 							? req.payload
 									.find({
-										collection: Users.slug,
+										collection: "users",
 										pagination: false,
 										where: {
 											id: {

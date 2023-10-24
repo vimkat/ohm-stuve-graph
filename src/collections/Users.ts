@@ -2,6 +2,8 @@ import { CollectionConfig } from "payload/types";
 import { text } from "payload/dist/fields/validations";
 import { telephone } from "../fields/telephone";
 import { DATE_FORMAT } from "../app.config";
+import { term } from "../fields/term";
+import DischargeHeader from "../components/discharge-header";
 
 const Users: CollectionConfig = {
 	slug: "users",
@@ -143,6 +145,34 @@ const Users: CollectionConfig = {
 				{
 					label: { en: "Contact", de: "Kontakt" },
 					fields: [telephone],
+				},
+				{
+					label: { en: "Discharges", de: "Entlastugnen" },
+					fields: [
+						{
+							name: "discharges",
+							label: { en: "Discharges", de: "Entlastungen" },
+							type: "array",
+							fields: [
+								term({ required: true }),
+								{
+									name: "committee",
+									label: { en: "Committee", de: "Gremium" },
+									type: "relationship",
+									relationTo: "committees",
+									filterOptions: ({ siblingData, id }) => ({
+										term: { equals: siblingData.term },
+										"members.user": { contains: id },
+									}),
+									required: true,
+									admin: {
+										condition: (_, { term }) => !!term,
+									},
+								},
+							],
+							admin: { components: { RowLabel: DischargeHeader } },
+						},
+					],
 				},
 				{
 					label: "System",
