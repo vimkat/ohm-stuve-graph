@@ -160,8 +160,8 @@ const Users: CollectionConfig = {
 									label: { en: "Committee", de: "Gremium" },
 									type: "relationship",
 									relationTo: "committees",
-									filterOptions: ({ siblingData, id }) => ({
-										term: { equals: (siblingData as any)?.term! },
+									filterOptions: ({ id }) => ({
+										// term: { equals: (siblingData as any)?.term! }, // can't do that! will reference committees of old terms
 										"members.user": { contains: id },
 									}),
 									required: true,
